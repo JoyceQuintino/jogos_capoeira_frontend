@@ -3,7 +3,16 @@
         "id": 1,
         "jogo": "Benguela",
         "categoria": "Laranja - Laranja Azul",
-        "fem": [],
+        "fem": [
+            {
+                "competidor_1": "Joyce",
+                "competidor_2": "Bell"
+            },
+            {
+                "competidor_1": "Cobrinha",
+                "competidor_2": "Coelha"
+            }
+        ],
         "masc": []
     },
     {
