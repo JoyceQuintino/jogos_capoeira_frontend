@@ -19,5 +19,6 @@
 .header a {
     text-decoration: none;
     color: #fff;
-    padding-inline: 0.5rem;
+    padding-inline: 1rem;
+    font-size: 1.125rem;
 }

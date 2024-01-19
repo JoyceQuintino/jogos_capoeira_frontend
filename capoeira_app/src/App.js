@@ -1,17 +1,8 @@
-import Container from "./components/Container";
-import Footer from "./components/Footer";
-import Header from "./components/Header";
+import Home from './pages/Home';
 
 function App() {
   return (
-    <>
-      <Header />
-      <Container>
-        <h2>Categoria</h2>
-        Lista de cards
-      </Container>
-      <Footer />
-    </>
+    <Home />
   );
 }
 
