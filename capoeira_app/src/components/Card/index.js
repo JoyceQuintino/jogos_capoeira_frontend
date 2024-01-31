@@ -1,10 +1,10 @@
 import styles from './Card.module.css';
 
-function Card({ id }) {
+function Card({id, jogo}) {
     return(
         <section className={styles.card}>
-            <h2>Jogo</h2>
-            {id}
+            <h2>Jogo de {jogo}</h2>
+            { id }
         </section>
     );
 }
