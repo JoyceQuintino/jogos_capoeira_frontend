@@ -50,10 +50,23 @@
     align-items: center;
 }  
 
-.div1, .div2 {
+.divcontainer {
     width: 50%;
     height: 90%;
     flex: 1;
     margin: 10px; 
     padding: 20px;
+    margin-left: 4%;
+}
+
+.divlogin {
+    width: 50%;
+    height: 90%;
+    flex: 1;
+    margin: 10px; 
+    padding: 20px;
+}
+
+.button:hover {
+    background-color: var(--red);
 }

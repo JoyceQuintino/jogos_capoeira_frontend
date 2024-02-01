@@ -4,6 +4,7 @@
     background-color: var(--white);
     background-image: url('../../images/banner.png');
     background-position: center;
+    opacity: 60%;
     background-repeat: no-repeat;
-    background-size: 90%;
+    background-size: 94%;
 }
