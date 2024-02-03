@@ -1,0 +1,11 @@
+.play {
+    display: flex;
+    flex-direction: column;
+}
+
+.play div {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 5px;
+}

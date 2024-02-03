@@ -1,0 +1,10 @@
+.banner {
+    width: 100%;
+    height: 73vh;
+    background-color: var(--white);
+    background-image: url('../../images/banner.png');
+    background-position: center;
+    opacity: 60%;
+    background-repeat: no-repeat;
+    background-size: 94%;
+}
