@@ -1,10 +1,8 @@
 import styles from './Banner.module.css';
 
 function Banner() {
-    return (
-        <div className={styles.banner}>
-
-        </div>
+    return(
+        <div className={styles.banner}></div>
     );
 }
 
