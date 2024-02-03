@@ -1,0 +1,10 @@
+.banner {
+    background-image: url('../../images/abada_globo_brasil.png'); /* Substitua pelo caminho da sua imagem */
+    background-size: contain;
+    background-repeat: no-repeat;
+    width: 100%;
+    background-position: center;
+    height: 55vh;
+    opacity: 50%;
+  }
+  
