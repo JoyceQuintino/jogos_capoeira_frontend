@@ -1,53 +1,190 @@
-[ 
+[
     {
-        "id": 1,
-        "jogo": "Benguela",
-        "categoria": "Laranja - Laranja Azul",
-        "fem": [
+        "categoria": "laranja-laranja-azul",
+        "chaves_fem": {
+            "benguela": {
+                "Jogo 1": {
+                    "id_competidor_1": "bf05b761-4fcb-4437-a279-536ceb9c1663",
+                    "id_competidor_2": null,
+                    "modalidade": {
+                        "nome": "benguela",
+                        "id": "b203e08b-b730-462c-a92a-516f5dec4fe8"
+                    },
+                    "id_modalidade": "b203e08b-b730-462c-a92a-516f5dec4fe8",
+                    "id": "e85961d7-a825-4d85-a4d6-d3f0999e3381"
+                },
+                "Jogo 2": {
+                    "id_competidor_1": "fe05b595-b7f9-42fe-97b6-a7472960fef6",
+                    "id_competidor_2": "e3dbe8e3-5172-4eb3-9fb9-83a8deed35af",
+                    "modalidade": {
+                        "nome": "benguela",
+                        "id": "b203e08b-b730-462c-a92a-516f5dec4fe8"
+                    },
+                    "id_modalidade": "b203e08b-b730-462c-a92a-516f5dec4fe8",
+                    "id": "de122272-da5d-4ee4-a617-8321efa8a3b2"
+                }
+            },
+            "são bento grande": {
+                "Jogo 1": {
+                    "id_competidor_1": "bf05b761-4fcb-4437-a279-536ceb9c1663",
+                    "id_competidor_2": "e3dbe8e3-5172-4eb3-9fb9-83a8deed35af",
+                    "modalidade": {
+                        "nome": "são bento grande",
+                        "id": "a849bbab-9aa8-4527-8f56-38f17d0f9cce"
+                    },
+                    "id_modalidade": "a849bbab-9aa8-4527-8f56-38f17d0f9cce",
+                    "id": "513de18a-ca33-4ff9-ade5-99e281cfc710"
+                },
+                "Jogo 2": {
+                    "id_competidor_1": null,
+                    "id_competidor_2": "fe05b595-b7f9-42fe-97b6-a7472960fef6",
+                    "modalidade": {
+                        "nome": "são bento grande",
+                        "id": "a849bbab-9aa8-4527-8f56-38f17d0f9cce"
+                    },
+                    "id_modalidade": "a849bbab-9aa8-4527-8f56-38f17d0f9cce",
+                    "id": "4429fd39-8c1f-456e-bc53-9d67f351dd57"
+                }
+            }
+        },
+        "chaves_masc": {
+            "benguela": {
+                "Jogo 1": {
+                    "id_competidor_1": "5f7352a6-4b4e-4e80-8e63-99a43085808b",
+                    "id_competidor_2": "a1b138f9-6e85-4823-8b5a-a0caa3eab143",
+                    "modalidade": {
+                        "nome": "benguela",
+                        "id": "b203e08b-b730-462c-a92a-516f5dec4fe8"
+                    },
+                    "id_modalidade": "b203e08b-b730-462c-a92a-516f5dec4fe8",
+                    "id": "b583b627-8b91-4e82-9709-2ecca004cdf7"
+                },
+                "Jogo 2": {
+                    "id_competidor_1": "5631008e-238e-4c6c-a719-ec640c348adf",
+                    "id_competidor_2": "1e134d0a-84a8-4527-909b-a0666e6050a1",
+                    "modalidade": {
+                        "nome": "benguela",
+                        "id": "b203e08b-b730-462c-a92a-516f5dec4fe8"
+                    },
+                    "id_modalidade": "b203e08b-b730-462c-a92a-516f5dec4fe8",
+                    "id": "da36440e-3975-45bf-8892-33480363fdb5"
+                }
+            },
+            "são bento grande": {
+                "Jogo 1": {
+                    "id_competidor_1": "5f7352a6-4b4e-4e80-8e63-99a43085808b",
+                    "id_competidor_2": "1e134d0a-84a8-4527-909b-a0666e6050a1",
+                    "modalidade": {
+                        "nome": "são bento grande",
+                        "id": "a849bbab-9aa8-4527-8f56-38f17d0f9cce"
+                    },
+                    "id_modalidade": "a849bbab-9aa8-4527-8f56-38f17d0f9cce",
+                    "id": "1dbabc1c-0f3b-4223-86d7-76b7218340ac"
+                },
+                "Jogo 2": {
+                    "id_competidor_1": "a1b138f9-6e85-4823-8b5a-a0caa3eab143",
+                    "id_competidor_2": "5631008e-238e-4c6c-a719-ec640c348adf",
+                    "modalidade": {
+                        "nome": "são bento grande",
+                        "id": "a849bbab-9aa8-4527-8f56-38f17d0f9cce"
+                    },
+                    "id_modalidade": "a849bbab-9aa8-4527-8f56-38f17d0f9cce",
+                    "id": "a596e2ee-0f8e-4af2-86c9-c1035169a927"
+                }
+            }
+        },
+        "competidores_categoria": [
             {
-                "competidor_1": "Joyce",
-                "competidor_2": "Bell"
+                "id": "5f7352a6-4b4e-4e80-8e63-99a43085808b",
+                "nome": "carlos",
+                "estado": "CE",
+                "idade": null,
+                "id_filiacao": null,
+                "apelido": "pajé",
+                "numero": 2,
+                "cidade": "Fortaleza",
+                "sexo": "M",
+                "foto_url": null,
+                "id_graduacao": "7100ab91-a6b7-4997-b143-11348fa0ca4e"
             },
             {
-                "competidor_1": "Cobrinha",
-                "competidor_2": "Coelha"
+                "id": "5631008e-238e-4c6c-a719-ec640c348adf",
+                "nome": "caio",
+                "estado": "CE",
+                "idade": null,
+                "id_filiacao": null,
+                "apelido": "super-choque",
+                "numero": 3,
+                "cidade": "Fortaleza",
+                "sexo": "M",
+                "foto_url": null,
+                "id_graduacao": "7100ab91-a6b7-4997-b143-11348fa0ca4e"
+            },
+            {
+                "id": "1e134d0a-84a8-4527-909b-a0666e6050a1",
+                "nome": "pp",
+                "estado": "CE",
+                "idade": null,
+                "id_filiacao": null,
+                "apelido": "pp",
+                "numero": 4,
+                "cidade": "Fortaleza",
+                "sexo": "M",
+                "foto_url": null,
+                "id_graduacao": "7100ab91-a6b7-4997-b143-11348fa0ca4e"
+            },
+            {
+                "id": "a1b138f9-6e85-4823-8b5a-a0caa3eab143",
+                "nome": "baqueta",
+                "estado": "CE",
+                "idade": null,
+                "id_filiacao": null,
+                "apelido": "baqueta",
+                "numero": 5,
+                "cidade": "Fortaleza",
+                "sexo": "M",
+                "foto_url": null,
+                "id_graduacao": "7100ab91-a6b7-4997-b143-11348fa0ca4e"
+            },
+            {
+                "id": "bf05b761-4fcb-4437-a279-536ceb9c1663",
+                "nome": "jambo",
+                "estado": "CE",
+                "idade": null,
+                "id_filiacao": null,
+                "apelido": "jambo",
+                "numero": 6,
+                "cidade": "Fortaleza",
+                "sexo": "F",
+                "foto_url": null,
+                "id_graduacao": "7100ab91-a6b7-4997-b143-11348fa0ca4e"
+            },
+            {
+                "id": "fe05b595-b7f9-42fe-97b6-a7472960fef6",
+                "nome": "joyce",
+                "estado": "CE",
+                "idade": null,
+                "id_filiacao": null,
+                "apelido": "joyce",
+                "numero": 15,
+                "cidade": "Fortaleza",
+                "sexo": "F",
+                "foto_url": null,
+                "id_graduacao": "7100ab91-a6b7-4997-b143-11348fa0ca4e"
+            },
+            {
+                "id": "e3dbe8e3-5172-4eb3-9fb9-83a8deed35af",
+                "nome": "wendy",
+                "estado": "CE",
+                "idade": null,
+                "id_filiacao": null,
+                "apelido": "jandaia",
+                "numero": 1,
+                "cidade": "Fortaleza",
+                "sexo": "F",
+                "foto_url": null,
+                "id_graduacao": "ce665e09-acfe-4124-8d64-6e9bd8d0689b"
             }
-        ],
-        "masc": []
-    },
-    {
-        "id": 2,
-        "jogo": "Benguela",
-        "categoria": "Azul - Azul Verde",
-        "fem": [],
-        "masc": []
-    },
-    {
-        "id": 3,
-        "jogo": "São Bento Grande",
-        "categoria": "Laranja - Laranja Azul",
-        "fem": [],
-        "masc": []
-    },
-    {
-        "id": 4,
-        "jogo": "São Bento Grande",
-        "categoria": "Azul - Azul Verde",
-        "fem": [],
-        "masc": []
-    },
-    {
-        "id": 5,
-        "jogo": "Siriuna",
-        "categoria": "Azul - Azul Verde",
-        "fem": [],
-        "masc": []
-    },
-    {
-        "id": 6,
-        "jogo": "Siriuna",
-        "categoria": "Verde - Verde Roxo",
-        "fem": [],
-        "masc": []
+        ]
     }
 ]

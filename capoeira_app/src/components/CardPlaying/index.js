@@ -1,14 +1,14 @@
 import { Link } from 'react-router-dom';
-import styles from './Card.module.css';
+import styles from './CardPlaying.module.css';
 import { BsArrowRight } from 'react-icons/bs'
 
-function Card({ modality, category, playType }) {
-    return (
+function CardPlaying({ playType }) {
+    return(
         <section className={styles.card}>
-            <h3>{modality}</h3>
+            <h3>{playType}</h3>
             <div className={styles.card_footer}>
                 <Link
-                    to="/playing" state={{ modality, category, playType }}
+                    to="/play"
                     className={styles.button}
                 >
                     <BsArrowRight />
@@ -18,4 +18,4 @@ function Card({ modality, category, playType }) {
     );
 }
 
-export default Card;
+export default CardPlaying;
