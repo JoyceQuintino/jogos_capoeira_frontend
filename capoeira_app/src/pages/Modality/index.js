@@ -4,17 +4,17 @@ import Category from '../../components/Category';
 import Card from '../../components/Card';
 import styles from './Modality.module.css';
 
-const allValidCategories = [
-    "laranja-laranja-azul",
-    "azul-azul-verde",
-    "verde-verde-roxa",
-    "roxa-roxa-marrom",
-    "marrom-marrom-vermelha"
-];
+const categoriesName = {
+    "laranja-laranja-azul":"Laranja - Laranja Azul",
+    "azul-azul-verde": "Azul - Azul Verde",
+    "verde-verde-roxa": "Verde - Verde Roxa",
+    "roxa-roxa-marrom": "Roxa - Roxa Marrom",
+    "marrom-marrom-vermelha": "Marrom - Marrom Vermelha"
+}
 
 function Modality() {
 
-    const [selectedCategories, setSelectedCategories] = useState(allValidCategories);
+    const [selectedCategories, setSelectedCategories] = useState(Object.keys(categoriesName));
     const [categoriesData, setCategoriesData] = useState([]);
 
     useEffect(() => {
@@ -56,15 +56,20 @@ function Modality() {
         <section className={styles.modality}>
             {categoriesWithData.map((categoryData) => {
                 const { data } = categoryData;
+                const categoryName = categoriesName[data.categoria] || data.categoria;
+
+                console.log(categoryName)
+
+                console.log(data.competidores_categoria)
 
                 return (
-                    <Category key={categoryData.category} category={data.categoria}>
+                    <Category key={categoryData.category} category={categoryName}>
                         <section className={styles.card_list}>
                             {data.chaves_fem && Object.keys(data.chaves_fem).length > 0 && (
-                                <Card modality={data.chaves_fem.genero} category={data.categoria} playType={data.chaves_fem}/>
+                                <Card modality={data.chaves_fem.genero} category={categoryName} playType={data.chaves_fem} competidores_categoria={data.competidores_categoria}/>
                             )}
                             {data.chaves_masc && Object.keys(data.chaves_masc).length > 0 && (
-                                <Card modality={data.chaves_masc.genero} category={data.categoria} playType={data.chaves_masc}/>
+                                <Card modality={data.chaves_masc.genero} category={categoryName} playType={data.chaves_masc} competidores_categoria={data.competidores_categoria}/>
                             )}
                         </section>
                     </Category>
