@@ -38,6 +38,8 @@ function Play() {
                     {matches && Object.values(matches).map((match) => (
                         <CardPlay
                             key={match.id}
+                            category={category}
+                            modality={modality}
                             playType={playType}
                             matches={[match]}
                             competitorsMap={competitorsMap}

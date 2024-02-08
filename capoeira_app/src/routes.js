@@ -7,6 +7,7 @@ import Page404 from "./pages/Page404";
 import BasePage from "./pages/BasePage";
 import Playing from "./pages/Playing";
 import Play from "./pages/Play";
+import Evaluation from "./pages/Evaluation";
 
 function AppRoutes() {
     return (
@@ -18,6 +19,7 @@ function AppRoutes() {
                     <Route path="/modality" element={<Modality />}></Route>
                     <Route path="/playing" element={<Playing />}></Route>
                     <Route path="/play" element={<Play />}></Route>
+                    <Route path="/evaluation" element={<Evaluation />}></Route>
                     <Route path="/login" element={<Login />}></Route>
                     <Route path="*" element={<Page404 />}></Route>
                 </Route>

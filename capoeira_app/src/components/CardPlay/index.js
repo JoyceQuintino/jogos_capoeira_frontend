@@ -1,7 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import styles from './CardPlay.module.css';
-import { BsArrowRight } from 'react-icons/bs';
 
 const playTypesName = {
     benguela: 'Benguela',
@@ -25,24 +24,26 @@ function Competitors({ playTypeName, jogo, competitorsMap, index }) {
     );
 }
 
-function CardPlay({ playType, matches, competitorsMap }) {
+function CardPlay({ category, modality, playType, matches, competitorsMap }) {
 
     const playTypeName = playTypesName[playType] || playType;
 
     return (
-        <section className={styles.card}>
-            <div className={styles.card_footer}>
-                {matches && Object.values(matches).map((match, index) => (
-                    <Competitors
-                        key={match.id}
-                        playTypeName={playTypeName}
-                        jogo={match}
-                        competitorsMap={competitorsMap}
-                        index={index}
-                    />
-                ))}
-            </div>
-        </section>
+        <Link to='/evaluation' state={{category, modality, playType, matches, competitorsMap}} className={styles.button}>
+            <section className={styles.card}>
+                <div className={styles.card_footer}>
+                    {matches && Object.values(matches).map((match, index) => (
+                        <Competitors
+                            key={match.id}
+                            playTypeName={playTypeName}
+                            jogo={match}
+                            competitorsMap={competitorsMap}
+                            index={index}
+                        />
+                    ))}
+                </div>
+            </section>
+        </Link>
     );
 }
 
