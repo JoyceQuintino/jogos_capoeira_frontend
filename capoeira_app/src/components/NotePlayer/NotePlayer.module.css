@@ -1,0 +1,20 @@
+.player {
+    align-items: center;
+}
+
+.pictureplayer {
+    height: 150px;
+    width:112px;
+    background: #393E46;
+}
+
+.noteindividual {
+    font-size: 50px;
+    height: 50px;
+    width: 100px;
+}
+
+.player h3 {
+    padding-block: 2rem;
+}
+
