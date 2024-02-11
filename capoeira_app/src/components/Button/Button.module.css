@@ -1,0 +1,18 @@
+.buttonComponent {
+    border: none;
+    background: var(--primary);
+    color: var(--white);
+    padding: 12px 24px;
+    margin: 32px 0;
+    font-size: 24px;
+    border-radius: 8px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+}
+
+.buttonComponent:hover {
+    background-color: var(--red);
+}

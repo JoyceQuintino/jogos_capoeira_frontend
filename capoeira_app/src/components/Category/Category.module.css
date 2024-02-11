@@ -1,11 +1,14 @@
 .category {
     display: flex;
     flex-direction: column;
+    padding-bottom: 40px;
+
 }
 
 .category div {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
+    padding-top: 34px;
     gap: 5px;
 }
