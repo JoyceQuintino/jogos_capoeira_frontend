@@ -1,11 +1,13 @@
 import React, { useState } from 'react';
 import styles from './Login.module.css';
 import BannerLogin from '../../components/BannerLogin';
-import { Link } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
+import axios from 'axios';
 
 function Login() {
     const [credentials, setCredentials] = useState({ username: '', password:'' });
     const [errors, setErrors] = useState({ username: '', password: '' });
+    const navigate = useNavigate()
 
     const validateLogin = () => {
         let valid = true;
@@ -32,11 +34,23 @@ function Login() {
         setCredentials({ ...credentials, [name]: value });
     };
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
 
         if (validateLogin()) {
-            // Lógica para enviar os dados de login (por exemplo, para o servidor)
+            try {
+                await axios.post('http://localhost:8000/user/login', {
+                    username: credentials.username,
+                    password: credentials.password
+                });
+                navigate('/initial')
+                //return response.data || {};
+            } catch (error) {
+                console.error(error);
+                alert(error.response.data.detail)
+                //return {};
+            }
+        
             console.log('Dados válidos, enviando...');
         } else {
             console.log('Dados inválidos, não enviado.');
@@ -60,6 +74,7 @@ function Login() {
                             <div className={styles.inputContainer}>
                                 <input
                                     value={credentials.username}
+                                    name='username'
                                     placeholder="Digite seu usuário"
                                     className={styles.inputBox}
                                     onChange={handleInputChange}
@@ -70,6 +85,8 @@ function Login() {
                             <div className={styles.inputContainer}>
                                 <input
                                     value={credentials.password}
+                                    type='password'
+                                    name='password'
                                     placeholder="Digite sua senha"
                                     className={styles.inputBox}
                                     onChange={handleInputChange}
@@ -78,7 +95,7 @@ function Login() {
                             </div>
                             <br />
                             <div className={styles.inputContainer}>
-                                <Link to="/initial" className={styles.button} type='submit'>Entrar</Link>
+                                <button className={styles.button}>Entrar</button>
                             </div>
                         </div>
                     </form>
