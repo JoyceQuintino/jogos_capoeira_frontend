@@ -24,12 +24,12 @@ function Competitors({ playTypeName, jogo, competitorsMap, index }) {
     );
 }
 
-function CardPlay({ category, modality, playType, matches, competitorsMap }) {
+function CardPlay({ username, category, modality, playType, matches, competitorsMap }) {
 
     const playTypeName = playTypesName[playType] || playType;
 
     return (
-        <Link to='/evaluation' state={{category, modality, playType, matches, competitorsMap}} className={styles.button}>
+        <Link to='/evaluation' state={{username, category, modality, playType, matches, competitorsMap}} className={styles.button}>
             <section className={styles.card}>
                 <div className={styles.card_footer}>
                     {matches && Object.values(matches).map((match, index) => (

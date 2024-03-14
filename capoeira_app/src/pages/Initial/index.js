@@ -1,8 +1,10 @@
 import styles from './Initial.module.css';
 import Banner from '../../components/Banner';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 
 function Initial() {
+    const location = useLocation();
+    const username = location.state?.username;
     return (
         <>
             <div className={styles.containerInitialBanner}>
@@ -12,7 +14,7 @@ function Initial() {
             </div>
             <div className={styles.containerInitialButton}>
                 <div className={styles.inputButton}>
-                    <Link to="/modality" className={styles.button} type='submit'>Iniciar Competição</Link>
+                    <Link to="/modality" state={{username}} className={styles.button} type='submit'>Iniciar Competição</Link>
                 </div>
             </div>
         </>

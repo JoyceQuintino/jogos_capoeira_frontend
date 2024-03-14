@@ -10,8 +10,10 @@ function Playing() {
     const category = location.state?.category;
     const playType = location.state?.playType;
     const competidores_categoria = location.state?.competidores_categoria;
+    const username = location.state?.username;
 
     console.log(category);
+    console.log(username);
     console.log(modality);
     console.log('competidores_categoria:', competidores_categoria);
 
@@ -38,7 +40,16 @@ function Playing() {
                         <section className={styles.card_list}>
                             {Object.keys(playType).map((type) => (
                                 type !== 'genero' && (
-                                    <CardPlaying category={category} modality={modality} playType={type} competitors={extractCompetitorIds(playType[type])} matches={playType[type]} competidores_categoria={competidores_categoria} key={type} />
+                                    <CardPlaying 
+                                        username={username} 
+                                        category={category} 
+                                        modality={modality} 
+                                        playType={type} 
+                                        competitors={extractCompetitorIds(playType[type])} 
+                                        matches={playType[type]} 
+                                        competidores_categoria={competidores_categoria} 
+                                        key={type} 
+                                    />
                                 )
                             ))}
                         </section>

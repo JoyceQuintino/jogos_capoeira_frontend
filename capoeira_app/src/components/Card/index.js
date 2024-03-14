@@ -1,10 +1,10 @@
 import { Link } from 'react-router-dom';
 import styles from './Card.module.css';
 
-function Card({ modality, category, playType, competidores_categoria }) {
+function Card({ username, modality, category, playType, competidores_categoria }) {
     return (
         <Link
-            to="/playing" state={{ modality, category, playType, competidores_categoria }}
+            to="/playing" state={{ username, modality, category, playType, competidores_categoria }}
             className={styles.button}
         >
             <section className={styles.card}>

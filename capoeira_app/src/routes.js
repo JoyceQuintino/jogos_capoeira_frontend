@@ -1,4 +1,4 @@
-import { BrowserRouter, Route, Routes } from "react-router-dom";
+import { BrowserRouter, Route, Routes, useLocation } from "react-router-dom";
 import Home from "./pages/Home";
 import Modality from "./pages/Modality";
 import Login from "./pages/Login";
@@ -13,7 +13,7 @@ function AppRoutes() {
     return (
         <BrowserRouter>
             <Routes>
-                <Route path="/" element={<BasePage />}>
+                <Route path="/" element={<BasePageWithUser />}>
                     <Route index element={<Home />}></Route>
                     <Route path="/initial" element={<Initial />}></Route>
                     <Route path="/modality" element={<Modality />}></Route>
@@ -26,6 +26,13 @@ function AppRoutes() {
             </Routes>
         </BrowserRouter>
     );
+}
+
+function BasePageWithUser() {
+    const location = useLocation();
+    const { state } = location;
+
+    return <BasePage user={state && state.username} />;
 }
 
 export default AppRoutes;

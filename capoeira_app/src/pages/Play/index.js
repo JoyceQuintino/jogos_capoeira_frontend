@@ -12,6 +12,7 @@ function Play() {
     const category = location.state?.category;
     const modality = location.state?.modality;
     const competitorsCategoria = location.state?.competidores_categoria;
+    const username = location.state?.username;
 
     console.log('Play - playType:', playType);
     console.log('Play - competitors:', competitors);
@@ -38,6 +39,7 @@ function Play() {
                     {matches && Object.values(matches).map((match) => (
                         <CardPlay
                             key={match.id}
+                            username={username}
                             category={category}
                             modality={modality}
                             playType={playType}

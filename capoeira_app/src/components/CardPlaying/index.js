@@ -7,12 +7,12 @@ const playTypesName = {
     siriuna: 'Siriuna'
 }
 
-function CardPlaying({ category, modality, playType, competitors, matches, competidores_categoria }) {
+function CardPlaying({ username, category, modality, playType, competitors, matches, competidores_categoria }) {
 
     const playTypeName = playTypesName[playType] || playType;
 
     return (
-        <Link to="/evaluation" state={{ category, modality, playType, competitors, matches, competidores_categoria }}
+        <Link to="/evaluation" state={{ username, category, modality, playType, competitors, matches, competidores_categoria }}
             className={styles.button}>
             <section className={styles.card}>
                 <h3>{playTypeName}</h3>

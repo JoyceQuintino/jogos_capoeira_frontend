@@ -5,7 +5,7 @@ import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 
 function Login() {
-    const [credentials, setCredentials] = useState({ username: '', password:'' });
+    const [credentials, setCredentials] = useState({ username:'', password:'' });
     const [errors, setErrors] = useState({ username: '', password: '' });
     const navigate = useNavigate()
 
@@ -13,13 +13,11 @@ function Login() {
         let valid = true;
         const newErrors = { username: '', password: '' };
 
-        // Validar o campo de username
         if (!credentials.username) {
             newErrors.username = 'Campo obrigatório';
             valid = false;
         }
 
-        // Validar o campo de senha
         if (!credentials.password) {
             newErrors.password = 'Campo obrigatório';
             valid = false;
@@ -43,20 +41,16 @@ function Login() {
                     username: credentials.username,
                     password: credentials.password
                 });
-                navigate('/initial')
-                //return response.data || {};
+                navigate('/initial', { state: { username: credentials.username } })
             } catch (error) {
                 console.error(error);
                 alert(error.response.data.detail)
-                //return {};
             }
-        
             console.log('Dados válidos, enviando...');
         } else {
             console.log('Dados inválidos, não enviado.');
         }
     };
-
 
     return (
         <>
