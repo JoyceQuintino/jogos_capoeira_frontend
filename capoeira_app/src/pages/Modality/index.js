@@ -6,74 +6,61 @@ import styles from './Modality.module.css';
 import { useLocation } from 'react-router-dom';
 
 const categoriesName = {
-    "laranja-laranja-azul":"Laranja - Laranja Azul",
-    "azul-azul-verde": "Azul - Azul Verde",
-    "verde-verde-roxa": "Verde - Verde Roxa",
-    "roxa-roxa-marrom": "Roxa - Roxa Marrom",
-    "marrom-marrom-vermelha": "Marrom - Marrom Vermelha"
+    "laranja_laranja_azul":"Laranja - Laranja Azul",
+    "azul_azul_verde": "Azul - Azul Verde",
+    "verde_verde_roxa": "Verde - Verde Roxa",
+    "roxa_roxa_marrom": "Roxa - Roxa Marrom",
+    "marrom_marrom_vermelha": "Marrom - Marrom Vermelha"
 }
 
 function Modality() {
     const location = useLocation();
-    const username = location.state?.username;
+    const user_id = location.state?.user_id;
 
-    const [selectedCategories, setSelectedCategories] = useState(Object.keys(categoriesName));
     const [categoriesData, setCategoriesData] = useState([]);
+    const COMPETIDORES = 'competidores_categoria';
 
     useEffect(() => {
-        const fetchCategory = async (category) => {
+        const fetchCategoriesData = async () => {
             try {
-                const response = await axios.post('http://localhost:8000/chaveamento/categoria', {
-                    categoria: category,
-                });
-                return response.data || {};
+                const response = await axios.get('http://127.0.0.1:8000/chaveamento/get_all_chaveamento');
+                const data = response.data;
+                const categoriesData = Object.keys(data).map(category => ({
+                    category: category,
+                    data: data[category],
+                    competidores_categoria: data[COMPETIDORES]
+                }));
+                setCategoriesData(categoriesData);
             } catch (error) {
                 console.error(error);
-                return {};
             }
         };
 
-        const fetchCategoriesData = async () => {
-            const categoriesData = await Promise.all(
-                selectedCategories.map(async (category) => ({
-                    category: category,
-                    data: await fetchCategory(category),
-                }))
-            );
-            setCategoriesData(categoriesData);
-        };
-
         fetchCategoriesData();
-    }, [selectedCategories]);
-
-    // Filtrar categorias que têm dados em competidores_categoria
-    const categoriesWithData = categoriesData.filter(categoryData =>
-        categoryData.data.competidores_categoria.length > 0
-    );
-
-    if (categoriesWithData.length === 0) {
-        return null; // Não renderizar nada se não houver dados em nenhuma categoria
-    }
+    }, []);
 
     return (
         <section className={styles.modality}>
-            {categoriesWithData.map((categoryData) => {
-                const { data } = categoryData;
-                const categoryName = categoriesName[data.categoria] || data.categoria;
+            {categoriesData.map((categoryData) => {
+                const { category, data, competidores_categoria } = categoryData;
+                const categoryName = categoriesName[category] || category;
 
-                console.log(categoryName)
+                console.log("COMPETIDORES - ", competidores_categoria);
 
-                console.log(data.competidores_categoria)
+               const hasChavesKeys = Object.keys(data).some(key => key.startsWith("chaves") && Object.keys(data[key]).length > 0);
+
+               if (!hasChavesKeys || data.hasOwnProperty('competidores_categoria')) {
+                   return null;
+               }
+
+               const filteredKeys = Object.keys(data).filter(key => key.startsWith('chaves') && Object.keys(data[key]).length > 0);
 
                 return (
-                    <Category key={categoryData.category} category={categoryName}>
+                    <Category key={category} category={categoryName}>
                         <section className={styles.card_list}>
-                            {data.chaves_fem && Object.keys(data.chaves_fem).length > 0 && (
-                                <Card username={username} modality={data.chaves_fem.genero} category={categoryName} playType={data.chaves_fem} competidores_categoria={data.competidores_categoria}/>
-                            )}
-                            {data.chaves_masc && Object.keys(data.chaves_masc).length > 0 && (
-                                <Card username={username} modality={data.chaves_masc.genero} category={categoryName} playType={data.chaves_masc} competidores_categoria={data.competidores_categoria}/>
-                            )}
+                            {filteredKeys.map((key) => (
+                                <Card key={key} user_id={user_id} modality={data[key].genero} category={categoryName} playType={data[key]} competidores_categoria={competidores_categoria}/>
+                            ))}
                         </section>
                     </Category>
                 );
@@ -83,3 +70,5 @@ function Modality() {
 }
 
 export default Modality;
+
+

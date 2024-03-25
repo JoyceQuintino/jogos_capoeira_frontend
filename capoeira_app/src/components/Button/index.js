@@ -3,9 +3,11 @@ import styles from './Button.module.css';
 
 function Button({ children }) {
   return (
-    <button className={styles.buttonComponent}>
-      {children}
-    </button>
+    <div className={styles.divButton}>
+      <button className={styles.buttonComponent}>
+        {children}
+      </button>
+    </div>
   );
 }
 

@@ -3,11 +3,13 @@ import styles from './Login.module.css';
 import BannerLogin from '../../components/BannerLogin';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
+import { useUser } from '../../context';
 
 function Login() {
     const [credentials, setCredentials] = useState({ username:'', password:'' });
     const [errors, setErrors] = useState({ username: '', password: '' });
-    const navigate = useNavigate()
+    const navigate = useNavigate();
+    const { loginUser } = useUser();
 
     const validateLogin = () => {
         let valid = true;
@@ -37,11 +39,14 @@ function Login() {
 
         if (validateLogin()) {
             try {
-                await axios.post('http://localhost:8000/user/login', {
+                const response = await axios.post('http://localhost:8000/user/login', {
                     username: credentials.username,
                     password: credentials.password
                 });
-                navigate('/initial', { state: { username: credentials.username } })
+                console.log("USUÁRIO - ", response.data.username);
+                console.log("ID - ", response.data.user_id);
+                loginUser(response.data.username);
+                navigate('/initial', { state: { user_id: response.data.user_id } });
             } catch (error) {
                 console.error(error);
                 alert(error.response.data.detail)

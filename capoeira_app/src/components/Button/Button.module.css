@@ -1,3 +1,10 @@
+.divButton {
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    display: flex;
+}
+
 .buttonComponent {
     border: none;
     background: var(--primary);

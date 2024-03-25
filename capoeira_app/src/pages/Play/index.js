@@ -21,12 +21,10 @@ function Play() {
     console.log('Play - matches:', matches);
     console.log('Play - competitorsCategoria:', competitorsCategoria);
 
-    // Verifique se a lista de competidores_categoria existe antes de prosseguir
     if (!competitorsCategoria) {
         return <p>Carregando jogos...</p>;
     }
 
-    // Crie um mapa associando IDs de competidores aos objetos competidores_categoria
     const competitorsMap = Object.fromEntries(
         competitorsCategoria.map(competitor => [competitor.id, competitor])
     );

@@ -10,13 +10,13 @@ function Playing() {
     const category = location.state?.category;
     const playType = location.state?.playType;
     const competidores_categoria = location.state?.competidores_categoria;
-    const username = location.state?.username;
+    const user_id = location.state?.user_id;
 
+    console.log(playType);
     console.log(category);
-    console.log(username);
+    console.log(user_id);
     console.log(modality);
-    console.log('competidores_categoria:', competidores_categoria);
-
+    console.log('competidores_categoria:', Array.isArray(competidores_categoria) ? competidores_categoria : []);
 
     const extractCompetitorIds = (matches) => {
         const competitorIds = [];
@@ -41,13 +41,13 @@ function Playing() {
                             {Object.keys(playType).map((type) => (
                                 type !== 'genero' && (
                                     <CardPlaying 
-                                        username={username} 
+                                        user_id={user_id} 
                                         category={category} 
                                         modality={modality} 
                                         playType={type} 
                                         competitors={extractCompetitorIds(playType[type])} 
                                         matches={playType[type]} 
-                                        competidores_categoria={competidores_categoria} 
+                                        competidores_categoria={Array.isArray(competidores_categoria) ? competidores_categoria : []} 
                                         key={type} 
                                     />
                                 )

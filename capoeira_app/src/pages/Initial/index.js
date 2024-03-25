@@ -4,7 +4,7 @@ import { Link, useLocation } from 'react-router-dom';
 
 function Initial() {
     const location = useLocation();
-    const username = location.state?.username;
+    const user_id = location.state?.user_id;
     return (
         <>
             <div className={styles.containerInitialBanner}>
@@ -14,7 +14,7 @@ function Initial() {
             </div>
             <div className={styles.containerInitialButton}>
                 <div className={styles.inputButton}>
-                    <Link to="/modality" state={{username}} className={styles.button} type='submit'>Iniciar Competição</Link>
+                    <Link to="/modality" state={{user_id}} className={styles.button} type='submit'>Iniciar Competição</Link>
                 </div>
             </div>
         </>

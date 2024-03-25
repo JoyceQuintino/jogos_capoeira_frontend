@@ -1,68 +1,56 @@
 import React, { useState } from 'react';
-import Slider from 'react-slick';
-import 'slick-carousel/slick/slick.css';
-import 'slick-carousel/slick/slick-theme.css';
 import Form from '../../components/Form';
-import { useLocation } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import styles from './Evaluation.module.css';
 
-const playTypesName = {
-    benguela: 'Benguela',
-    sao_bento_grande: 'São Bento Grande',
-    siriuna: 'Siriuna'
-}
-
-const categoriesName = {
-    "laranja-laranja-azul": "Laranja - Laranja Azul",
-    "azul-azul-verde": "Azul - Azul Verde",
-    "verde-verde-roxa": "Verde - Verde Roxa",
-    "roxa-roxa-marrom": "Roxa - Roxa Marrom",
-    "marrom-marrom-vermelha": "Marrom - Marrom Vermelha"
-}
-
 function Evaluation() {
+    const navigate = useNavigate();
     const location = useLocation();
     const playType = location.state?.playType;
     const matches = location.state?.matches;
     const category = location.state?.category;
     const modality = location.state?.modality;
-    const competitorsCategoria = location.state?.competidores_categoria;
+    const competidoresCategoria = location.state?.competidores_categoria;
+    const user_id = location.state?.user_id;
 
-    console.log('PlayType:', playType);
-    console.log('Category:', category);
-    console.log('Modality:', modality);
-    console.log('Matches:', matches);
-    console.log('Competidores por categoria:', competitorsCategoria);
+    const [currentGameIndex, setCurrentGameIndex] = useState(0);
 
-    // Verifique se a lista de competidores_categoria existe antes de prosseguir
-    if (!competitorsCategoria) {
+    if (!competidoresCategoria) {
         return <p>Carregando jogos...</p>;
     }
 
-    // Crie um mapa associando IDs de competidores aos objetos competidores_categoria
-    const competitorsMap = Object.fromEntries(
-        competitorsCategoria.map(competitor => [competitor.id, competitor])
+    const competidorsMap = Object.fromEntries(
+        competidoresCategoria.map(competidor => [competidor.id, competidor])
     );
 
-    return (
+    const handleNextGame = () => {
+        if (currentGameIndex < Object.values(matches).length - 1) {
+            setCurrentGameIndex(currentGameIndex + 1);
+        } else {
+            navigate('/modality');
+        }
+    };
 
+    return (
         <section className={styles.card_list}>
-            {matches && Object.values(matches).map((match) => (
+            {Object.values(matches).length > 0 ? (
                 <Form
-                    key={match.id}
+                    key={Object.keys(matches)[currentGameIndex]}
+                    user_id={user_id}
                     category={category}
                     modality={modality}
                     playType={playType}
-                    matches={[match]}
-                    competitorsMap={competitorsMap}
+                    matches={[Object.values(matches)[currentGameIndex]]}
+                    competidorsMap={competidorsMap}
+                    onNextClick={handleNextGame}
+                    matchNow={currentGameIndex}
                 />
-            ))}
-            {matches && Object.values(matches).length === 0 && (
+            ) : (
                 <p>Sem partidas disponíveis</p>
             )}
         </section>
-    )
+    );
 }
 
-
 export default Evaluation;
+

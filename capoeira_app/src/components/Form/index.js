@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import Category from '../Category';
-import Button from '../Button';
 import NotePlayer from '../NotePlayer';
 import styles from './Form.module.css';
+import axios from 'axios';
 
 const playTypesName = {
   benguela: 'Benguela',
@@ -10,35 +10,64 @@ const playTypesName = {
   siriuna: 'Siriuna',
 };
 
-function CardEvaluation({ category, modality, playType, match, competitorsMap, onNextClick }) {
-  const playTypeName = playTypesName[playType] || playType;
+function CardEvaluation({ user_id, category, modality, playType, match, competidorsMap, onNextClick, matchNow }) {
+  const playTypeName = playTypesName[playType];
+  const competidor1 = competidorsMap[match?.competidor_1]?.apelido || 'Competidor 1';
+  const competidor2 = competidorsMap[match?.competidor_2]?.apelido || 'Competidor 2';
 
-  const competitor1 = competitorsMap[match?.id_competidor_1]?.apelido || 'Competidor 1';
-  const competitor2 = competitorsMap[match?.id_competidor_2]?.apelido || 'Competidor 2';
-
-  const [noteCompetitor1, setNoteCompetitor1] = useState(0);
-  const [noteCompetitor2, setNoteCompetitor2] = useState(0);
+  const [notecompetidor1, setNotecompetidor1] = useState(0);
+  const [notecompetidor2, setNotecompetidor2] = useState(0);
   const [noteplay, setNotePlay] = useState(0);
+  const [resposta, setResposta] = useState('');
+  const [showResposta, setShowResposta] = useState(false);
 
-  const handleSaveEvaluation = () => {
+  const handleSaveEvaluation = async () => {
     console.log("Salvando avaliação");
-    // Lógica para salvar a avaliação
+    console.log("LOGIN DO USUÁRIO - ", user_id);
+    const data = {
+      "pontuacao_competidor_1": notecompetidor1,
+      "pontuacao_competidor_2": notecompetidor2,
+      "pontuacao_jogo": noteplay,
+      "id_jogo": match.id,
+      "id_user": user_id
+    };
 
-    // Chama a função para passar para o próximo jogo
-    onNextClick();
+    console.log("Dados da avaliação a serem enviados: ", data);
+
+    try {
+      const response = await axios.post('http://127.0.0.1:8000/pontuacao/create_pontuacao', data);
+
+      if (response.status === 200) {
+        setResposta("Avaliação salva com sucesso!");
+        setShowResposta(true);
+        setTimeout(() => {
+          setShowResposta(false);
+          onNextClick();
+        }, 3000);
+      } else {
+        console.error("Erro ao enviar avaliação: ", response.data);
+      }
+    } catch (error) {
+      setResposta("Erro ao enviar avaliação: " + error.message);
+      setShowResposta(true);
+      setTimeout(() => {
+        setShowResposta(false);
+      }, 3000);
+      console.error(error);
+    }
   };
 
   return (
     <div className={styles.gameCard}>
       <Category category={category} />
       <div className={styles.infoplay}>
-        <h1>Jogo de {playTypeName} - {modality}</h1>
+        <h1>Jogo {matchNow+1} de {playTypeName} - {modality}</h1>
       </div>
       <div className={styles.notes}>
         <NotePlayer
-          apelido={competitor1}
-          nota={noteCompetitor1}
-          setNota={setNoteCompetitor1}
+          apelido={competidor1}
+          nota={notecompetidor1}
+          setNota={setNotecompetidor1}
         />
 
         <div className={styles.noteplayer} >
@@ -64,46 +93,44 @@ function CardEvaluation({ category, modality, playType, match, competitorsMap, o
         </div>
 
         <NotePlayer
-          apelido={competitor2}
-          nota={noteCompetitor2}
-          setNota={setNoteCompetitor2}
+          apelido={competidor2}
+          nota={notecompetidor2}
+          setNota={setNotecompetidor2}
         />
       </div>
       <div className={styles.divButton}>
-        <Button onClick={handleSaveEvaluation}>
+        <button
+          className={styles.button}
+          onClick={handleSaveEvaluation}
+        >
           Salvar Avaliação
-        </Button>
+        </button>
       </div>
+      {showResposta && (
+        <div className={styles.notification}>{resposta}</div>
+      )}
     </div>
   );
 }
 
-function Form({ category, modality, playType, matches, competitorsMap }) {
-  const matchKeys = Object.keys(matches);
-  const [currentGameIndex, setCurrentGameIndex] = useState(0);
-
-  const handleNextForm = () => {
-    if (currentGameIndex < matchKeys.length - 1) {
-      console.log("Avançando para o próximo jogo");
-      setCurrentGameIndex(currentGameIndex + 1);
-    }
-  };
+function Form({ user_id, category, modality, playType, matches, competidorsMap, onNextClick, matchNow }) {
 
   return (
     <section className={styles.evaluationContainer}>
-      {currentGameIndex < matchKeys.length && (
-        <CardEvaluation
-          category={category}
-          modality={modality}
-          playType={playType}
-          match={matches[matchKeys[currentGameIndex]]}
-          competitorsMap={competitorsMap}
-          onNextClick={handleNextForm}
-        />
-      )}
-      {currentGameIndex < matchKeys.length && (
-        <p>Jogo Atual: {currentGameIndex + 1}</p>
-      )}
+      {matches.map((match, index) => (
+        <div key={index}>
+          <CardEvaluation
+            user_id={user_id}
+            category={category}
+            modality={modality}
+            playType={playType}
+            match={match}
+            competidorsMap={competidorsMap}
+            onNextClick={onNextClick}
+            matchNow={matchNow}
+          />
+        </div>
+      ))}
     </section>
   );
 }
