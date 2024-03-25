@@ -27,7 +27,7 @@ function Evaluation() {
         if (currentGameIndex < Object.values(matches).length - 1) {
             setCurrentGameIndex(currentGameIndex + 1);
         } else {
-            navigate('/modality');
+            navigate('/modality', { state: { user_id } });
         }
     };
 
